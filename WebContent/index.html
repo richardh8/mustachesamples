@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Mustache Samples</title>
+<script src="js/jquery.min.js"></script>
+<script src="js/mustache.js"></script>  
+</head>
+
+<body>
+
+<h1>Mustache.js Samples</h1>
+
+
+<script>
+
+var person = {
+    firstName: "Christophe",
+    lastName: "Coenraets Porra nenhuma",
+    blogURL: "http://coenraets.org"
+};
+var template = "<h1>{{firstName}} {{lastName}}</h1>Blog: {{blogURL}}";
+var html = Mustache.to_html(template, person);
+$('#sampleArea1').html(html);  
+</script>
+
+<script>
+$.getJSON('json/data.json', function(data) {
+    var template = $('#personTpl').html();
+    var html = Mustache.to_html(template, data);
+    $('#sampleArea2').html(html);
+});
+</script>
+
+<script id="personTpl" type="text/template">
+<h1>{{firstName}} {{lastName}}</h1>
+<p>Blog URL: <a href="{{blogURL}}">{{blogURL}}</a></p>
+</script>
+
+<script>
+var data = {name: "John Smith", skills: ['JavaScript', 'PHP', 'Java']};
+var tpl = "{{name}} skills:<ul>{{#skills}}<li>{{.}}</li>{{/skills}}</ul>";
+var html = Mustache.to_html(tpl, data);
+$('#sampleArea3').html(html);
+</script>
+
+<div id="sampleArea1"></div>
+<div id="sampleArea2"></div>
+<div id="sampleArea3"></div>
+
+</body>
+</html>
